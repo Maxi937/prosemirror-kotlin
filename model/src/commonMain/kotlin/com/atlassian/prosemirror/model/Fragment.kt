@@ -2,6 +2,8 @@ package com.atlassian.prosemirror.model
 
 import com.atlassian.prosemirror.util.slice
 import com.atlassian.prosemirror.util.verbose
+import kotlin.js.ExperimentalJsExport
+import kotlin.js.JsExport
 import kotlin.math.max
 import kotlin.math.min
 import kotlinx.serialization.json.JsonArray

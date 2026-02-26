@@ -12,4 +12,4 @@ class AndroidWeakMap<K, V> : WeakMap<K, V> {
     }
 }
 
-actual fun <K, V> mutableWeakMapOf(): WeakMap<K, V> = AndroidWeakMap()
+actual fun <K : Any, V : Any?> mutableWeakMapOf(): WeakMap<K, V> = AndroidWeakMap()

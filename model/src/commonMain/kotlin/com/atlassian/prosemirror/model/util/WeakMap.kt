@@ -16,4 +16,4 @@ interface WeakMap<K, V> {
     fun put(key: K, value: V)
 }
 
-expect fun <K, V> mutableWeakMapOf(): WeakMap<K, V>
+expect fun <K : Any, V : Any?> mutableWeakMapOf(): WeakMap<K, V>

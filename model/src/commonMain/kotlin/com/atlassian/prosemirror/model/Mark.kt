@@ -1,6 +1,8 @@
 package com.atlassian.prosemirror.model
 
 import com.atlassian.prosemirror.model.parser.JSON
+import kotlin.js.ExperimentalJsExport
+import kotlin.js.JsExport
 import kotlin.jvm.JvmInline
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid

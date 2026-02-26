@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
@@ -6,6 +7,22 @@ plugins {
 }
 
 kotlin {
+  js {
+    browser()
+  }
+
+//  @OptIn(ExperimentalWasmDsl::class)
+//  wasmJs {
+//    browser()
+//  }
+
+  // Java
+  jvm {
+    withJava()
+    testRuns["test"].executionTask.configure {
+      useJUnitPlatform()
+    }
+  }
   // Java
   jvm {
     withJava()

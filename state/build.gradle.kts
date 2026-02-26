@@ -30,6 +30,8 @@ kotlin {
     }
   }
 
+  js()
+
   sourceSets {
     commonMain.dependencies {
       implementation(libs.kotlinx.serialization.json)

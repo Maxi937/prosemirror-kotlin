@@ -5,6 +5,8 @@ package com.atlassian.prosemirror.model
 import com.atlassian.prosemirror.util.ConcurrentMutableMap
 import com.atlassian.prosemirror.util.slice
 import com.atlassian.prosemirror.util.verbose
+import kotlin.js.ExperimentalJsExport
+import kotlin.js.JsExport
 import kotlinx.serialization.json.JsonObject
 
 // An object holding the attributes of a node.
@@ -447,6 +449,8 @@ class MarkType internal constructor(
 }
 
 // An object describing a schema, as passed to the [`Schema`](#model.Schema) constructor.
+@OptIn(ExperimentalJsExport::class)
+@JsExport
 data class SchemaSpec(
     // The node types in this schema. Maps names to [`NodeSpec`](#model.NodeSpec) objects that
     // describe the node type associated with that name. Their order is significant—it determines
@@ -476,7 +480,10 @@ data class SchemaSpec(
 )
 
 // A description of a node type, used when defining a schema.
+@OptIn(ExperimentalJsExport::class)
+@JsExport
 interface NodeSpec {
+
     // The content expression for this node, as described in the
     // [schema guide](/docs/guide/#schema.content_expressions). When not given, the node does not
     // allow any content.
@@ -585,6 +592,8 @@ interface NodeSpec {
 }
 
 // Used to define marks when creating a schema.
+@OptIn(ExperimentalJsExport::class)
+@JsExport
 interface MarkSpec {
     // The attributes that marks of this type get.
     val attrs: Map<String, AttributeSpec>?

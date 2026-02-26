@@ -1,3 +1,6 @@
+@file:OptIn(ExperimentalWasmDsl::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
@@ -7,10 +10,24 @@ plugins {
   id("kotlinx-serialization")
 }
 
+
+atomicfu {
+  transformJvm = true
+  transformJs = false
+}
+
 kotlin {
+  js {
+    browser()
+  }
+
+//  @OptIn(ExperimentalWasmDsl::class)
+//  wasmJs {
+//    browser()
+//  }
+
   // Java
   jvm {
-    withJava()
     testRuns["test"].executionTask.configure {
       useJUnitPlatform()
     }
@@ -42,6 +59,9 @@ kotlin {
       implementation(project(":test-builder"))
       implementation(libs.kotlin.test)
       implementation(libs.test.assertk)
+    }
+    webMain.dependencies {
+      implementation(kotlinJsWrappers.js)
     }
   }
 }
