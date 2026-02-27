@@ -8,21 +8,21 @@ import kotlin.js.unsafeCast
 import js.collections.WeakMap
 
 @OptIn(ExperimentalWasmJsInterop::class)
-class WebWeakMap<K : Any, V : Any?> : com.atlassian.prosemirror.model.util.WeakMap<K, V> {
+class WebWeakMap<K : Any, V> : com.atlassian.prosemirror.model.util.WeakMap<K, V> {
 
-    private val map = WeakMap<JsAny, JsAny>()
+    private val map = WeakMap<JsAny, JsAny?>()
 
     override fun get(key: K): V? {
-        return map.get(key as JsAny) as V?
+        return map.get(key.toJsReference()) as V?
     }
 
     override fun put(key: K, value: V) {
         map.set(
-            key as JsAny,
-            value as JsAny
+            key.toJsReference(),
+            value?.toJsReference()
         )
     }
 }
 
-actual fun <K : Any, V : Any?> mutableWeakMapOf(): com.atlassian.prosemirror.model.util.WeakMap<K, V> = WebWeakMap<K, V>()
+actual fun <K : Any, V : Any?> mutableWeakMapOf(): com.atlassian.prosemirror.model.util.WeakMap<K, V> = WebWeakMap()
 
